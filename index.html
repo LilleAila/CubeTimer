@@ -4,10 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
-    <link rel="stylesheet" href="style.css">
+    <title>CubeTimer</title>
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <script src="https://kit.fontawesome.com/1c590b33cc.js" crossorigin="anonymous"></script>
   </head>
   <body>
-	<script src="index.js"></script>
+    <!-- <img src="./src/assets/favicon/cube.svg"> -->
+    <!-- <div class="app-container">
+        <div class="top-bar">
+            <div class="nav-bar">
+                <a class="nav-link" href="#timerPage">TIMER</a>
+                <a class="nav-link" href="#sessionsPage">SESSIONS</a>
+                <a class="nav-link" href="#solvesPage">SOLVES</a>
+                <a class="nav-link" href="#statsPage">STATS</a>
+            </div>
+        </div>
+        <div class="app">
+            <div class="pages">
+                <div class="page" id="timerPage">
+                    00.0
+                </div>
+                <div class="page" id="sessionsPage"></div>
+                <div class="page" id="solvesPage"></div>
+                <div class="page" id="statsPage"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="app-container">
+        <div class="top-bar-container">
+            <div class="top-bar">
+                <div class="nav-bar">
+                    <img src="./src/assets/favicon/cube.svg" class="logo">
+                    <a class="nav-link" setPage="timer">TIMER</a>
+                    <a class="nav-link" setPage="sessions">SESSIONS</a>
+                    <a class="nav-link" setPage="solves">SOLVES</a>
+                    <a class="nav-link" setPage="stats">STATS</a>
+                </div>
+            </div>
+        </div>
+        <div class="pages-container">
+            <div class="pages">
+                <div class="page" id="timerPage">
+                    <div class="scramble">SCRAMBLE</div>
+                    <div class="time">00.0</div>
+                    <div class="actions">
+                        <i class="far fa-flag"></i>
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="page" id="sessionsPage">
+                    Sessions
+                </div>
+                <div class="page" id="solvesPage">
+                    Solves
+                </div>
+                <div class="page" id="statsPage">
+                    Stats
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<script src="./src/js/umbrella.js"></script>
+    <script src="./src/js/hashnav.js"></script>
+    <script src="./src/js/scramble.js"></script>
+    <script src="./src/js/index.js"></script>
   </body>
 </html>

@@ -1,5 +1,14 @@
 :root {
-    --bgColor: #000000;
+    --topBarColor: #17191C;
+    --pageColor: #22252A;
+    --vh: 1vh;
+    --appHeight: 93;
+    --textColor: #ffffff;
+    --linkTextColor: #eeeeee;
+
+    --white: #ffffff;
+    --whiteHover: #bbbbbb;
+    --whiteActive: #999999;
 }
 
 * {
@@ -9,6 +18,207 @@
 }
 
 body {
-    background-color: var(--bgColor);
+    background-color: var(--topBarColor);
     width: 100vw;
+    height: calc(var(--vh) * 100);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--textColor);
+
+    font-size: 3vmin;
+}
+
+/* .app-container {
+    width: 100vw;
+    max-width: 800px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.top-bar, .nav-bar {
+    height: calc(var(--vh) * (100 - var(--appHeight)));
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.app, .pages, .page {
+    height: calc(var(--vh) * appHeight);
+    width: 100%;
+    background-color: var(--pageColor);
+} */
+
+.app-container {
+    width: 100vw;
+    height: calc(var(--vh) * 100);
+}
+
+.top-bar-container {
+    width: 100vw;
+    height: calc(var(--vh) * (100 - var(--appHeight)));
+    background-color: var(--topBarColor);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pages-container {
+    width: 100vw;
+    height: calc(var(--vh) * var(--appHeight));
+    background-color: var(--pageColor);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-bar, .pages {
+    width: 100vw;
+    max-width: 800px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.top-bar {
+    flex-direction: row;
+}
+
+.pages {
+    flex-direction: column;
+}
+
+.nav-bar {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.nav-link, .nav-link:visited {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    text-decoration: none;
+    color: var(--linkTextColor);
+
+    user-select: none;
+    cursor: pointer;
+
+    font-size: 2.3vmin;
+
+    color: var(--white);
+
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+    color: var(--whiteHover);
+}
+
+.nav-link:active {
+    color: var(--whiteActive);
+}
+
+.activeLink {
+    background-color: var(--pageColor);
+}
+
+.page:not(.show) {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    display: none;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    height: 100%;
+    width: auto;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.scramble {
+    user-select: none;
+    cursor: pointer;
+    font-size: 4vmin;
+
+    transition: color 0.2s ease-in-out;
+    color: var(--white);
+}
+
+.scramble:hover {
+    color: var(--whiteHover);
+}
+
+.scramble:active {
+    color: var(--whiteActive);
+}
+
+.time {
+    font-size: 10vmin;
+    user-select: none;
+}
+
+.actions {
+    letter-spacing: 2vmin;
+    user-select: none;
+}
+
+.actions i {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    color: var(--white);
+}
+
+.actions i:hover {
+    color: var(--whiteHover);
+}
+
+.actions i:active {
+    color: var(--whiteActive);
 }
