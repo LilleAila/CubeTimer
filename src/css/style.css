@@ -9,6 +9,9 @@
     --white: #ffffff;
     --whiteHover: #bbbbbb;
     --whiteActive: #999999;
+
+    --red: #ff0000;
+    --green: #1d961d;
 }
 
 * {
@@ -209,16 +212,151 @@ body {
     user-select: none;
 }
 
-.actions i {
+.actions i, .actions span, .penaltyInfo i, .penaltyInfo span {
     cursor: pointer;
     transition: color 0.2s ease-in-out;
     color: var(--white);
 }
 
-.actions i:hover {
+.actions i:hover, .actions span:hover, .penaltyInfo i:hover, .penaltyInfo span:hover {
     color: var(--whiteHover);
 }
 
-.actions i:active {
+.actions i:active, .actions span:active, .penaltyInfo i:active, .penaltyInfo span:active {
+    color: var(--whiteActive);
+}
+
+.red {
+    color: var(--red);
+}
+
+.green {
+    color: var(--green);
+}
+
+.solves {
+    width: 100%;
+    border-collapse:separate; 
+    border-spacing:2vmin;
+    position: relative;
+    /* max-height: calc(var(--vh) * var(--appHeight));
+    height: calc(var(--vh) * var(--appHeight)); */
+    height: 70%;
+    overflow-y: scroll;
+    table-layout: fixed;
+    display: table;
+}
+
+.solves thead th:nth-child(1), .slves tbody td:nth-child(1) {
+    width: 35%;
+}
+
+.solves thead th:nth-child(2), .solves tbody td:nth-child(2) {
+    width: 65%;
+}
+
+.solves thead, .solves tbody {
+    display: block;
+}
+
+.solves tbody {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.solveTime {
+    cursor: pointer;
+}
+
+.headerRow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.space0 {
+    letter-spacing: 0;
+}
+
+.penaltyInfo {
+    user-select: none;
+    letter-spacing: 2vmin;
+}
+
+.solveInfo:not(.showInfo) {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    display: none;
+}
+
+.solveInfo {
+    position: fixed;
+    top: calc(var(--vh) / 2);
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    width: 50vmin;
+    height: 50vmin;
+
+    background-color: var(--topBarColor);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+
+    z-index: 11;
+    filter: blur(0);
+
+    user-select: none;
+
+    padding: 2vmin;
+}
+
+.blurBackground, .app-container.blur {
+    z-index: 10;
+    filter: blur(6px);
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0);
+    pointer-events: none;
+    user-select: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: calc(var(--vh) * 100);
+    width: 100vw;
+}
+
+.hideBlur {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    display: none;
+}
+
+.closeInfo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--white);
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    font-size: 5vmin;
+}
+
+.closeInfo:hover {
+    color: var(--whiteHover);
+}
+
+.closeInfo:active {
     color: var(--whiteActive);
 }

@@ -50,15 +50,30 @@
                     <div class="scramble">SCRAMBLE</div>
                     <div class="time">00.0</div>
                     <div class="actions">
-                        <i class="far fa-flag"></i>
-                        <i class="fas fa-times"></i>
+                        <!-- <i class="far fa-flag"></i> -->
+                        <span class="none space0">None</span>
+                        <span class="plus2 space0">+2</span>
+                        <span class="DNF space0">DNF</span>
+                        <i class="fas fa-times remove"></i>
                     </div>
                 </div>
                 <div class="page" id="sessionsPage">
                     Sessions
                 </div>
                 <div class="page" id="solvesPage">
-                    Solves
+                    <table class="solves">
+                        <thead>
+                            <tr class="headerRow">
+                                <th class="timeHeader">Time</th>
+                                <th class="scrambleHeader">Scramble</th>
+                                <!-- <th>ao5</th>
+                                <th>ao12</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Solves -->
+                        </tbody>
+                    </table>
                 </div>
                 <div class="page" id="statsPage">
                     Stats
@@ -67,9 +82,24 @@
         </div>
     </div>
 
+    <!-- <div class="blurBackground"></div> -->
+
+    <div class="solveInfo">
+        <div class="timeInfo">00.00</div>
+        <div class="scrambleInfo">SCRAMBLE</div>
+        <div class="penaltyInfo">
+            <span class="none space0">None</span>
+            <span class="plus2 space0">+2</span>
+            <span class="DNF space0">DNF</span>
+            <i class="fas fa-times remove"></i>
+        </div>
+        <i class="far fa-window-close closeInfo"></i>
+    </div>
+
 	<script src="./src/js/umbrella.js"></script>
     <script src="./src/js/hashnav.js"></script>
     <script src="./src/js/scramble.js"></script>
+    <script src="./src/js/timer.js"></script>
     <script src="./src/js/index.js"></script>
   </body>
 </html>
