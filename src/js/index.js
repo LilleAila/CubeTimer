@@ -77,6 +77,8 @@ function saveCurrentSession() {
     window.localStorage.setItem("currentSession", currentSession.toString());
 }
 
+const average = (array) => array.reduce((a, b) => a + b) / array.length;
+
 function newScramble() {
     currentScramble = scramble(sessions[currentSession].scrambleType, 25);
     u(".scramble").text(currentScramble);
