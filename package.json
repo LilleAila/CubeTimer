@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "umbrellajs": "^3.2.3"
+  },
+  "scripts": {
+    "build": "browserify src/js/index.js -o src/bundle.js"
+  }
+}
