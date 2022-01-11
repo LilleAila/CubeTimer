@@ -178,6 +178,29 @@ function saveCurrentSession() {
 
 const average = (array) => array.reduce((a, b) => a + b) / array.length;
 
+//* Avg of X
+function aoX(timesArr) {
+    if(timesArr.includes("DNF")) return "DNF";
+    if(timesArr.includes("DNS")) return "DNS";
+    let arr = timesArr;
+    arr.splice(Math.max(...timesArr), 1);
+    arr.splice(Math.min(...timesArr), 1);
+    return average(timesArr);
+}
+
+//* Mean of X
+function moX(timesArr) {
+    if(timesArr.includes("DNF")) return "DNF";
+    if(timesArr.includes("DNS")) return "DNS";
+    return average(timesArr);
+}
+
+//* Last X from an array
+function lastX(x, arr) {
+    console.log(arr.slice(-x), -x)
+    return arr.slice(-x);
+}
+
 function newScramble() {
     // currentScramble = scramble(sessions[currentSession].scrambleType, 25);
     currentScramble = scramble(3, 25);
