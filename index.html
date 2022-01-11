@@ -58,7 +58,31 @@
                     </div>
                 </div>
                 <div class="page" id="sessionsPage">
-                    Sessions
+                    <h2>Sessions</h2>
+                    <!-- <form class="sessions">
+                        <input type="radio" id="s0" value="s0" name="session" class="session" checked>
+                        <label for="s0" class="session">
+                            <span>3x3</span>
+                            <i class="far fa-edit"></i>
+                        </label>
+
+                        <input type="radio" id="s1" value="s1" name="session" class="session">
+                        <label for="s1" class="session">
+                            <span>4x4</span>
+                            <i class="far fa-edit"></i>
+                        </label>
+
+                        <input type="radio" id="s2" value="s2" name="session" class="session">
+                        <label for="s2" class="session">
+                            <span>5x5</span>
+                            <i class="far fa-edit"></i>
+                        </label>
+                    </form> -->
+                    <div class"manageSessions">
+                        <input type="text" id="searchSessions" placeholder="Search">
+                        <button class="addSession">Add Session</button>
+                    </div>
+                    <ul class="sessions" id="sessions"></ul>
                 </div>
                 <div class="page" id="solvesPage">
                     <table class="solves">
@@ -96,12 +120,54 @@
         <i class="far fa-window-close closeInfo"></i>
     </div>
 
+    <div class="addSessionUI hideAddSessionUI">
+        <input type="text" class="addSessionName" placeholder="Name" value="3x3">
+        <div>
+            Scramble: 
+            <select class="addSessionScrambleType">
+                <option value="2x2">2x2</option>
+                <option value="3x3" selected>3x3</option>
+                <option value="4x4">4x4</option>
+                <option value="5x5">5x5</option>
+                <option value="6x6">6x6</option>
+                <option value="7x7">7x7</option>
+                <option value="skewb">Skewb</option>
+                <option value="sq1">Square 1</option>
+                <option value="pyra">Pyraminx</option>
+                <option value="mega">Megaminx</option>
+                <option value="clock">Clock</option>
+            </select>
+        </div>
+        <button class="addTheSession">Add</button>
+    </div>
+
+    <div class="editSessionUI hideEditSessionUI">
+        <input type="text" class="editSessionName" placeholder="Name" value="New Session">
+        <div>
+            Scramble: 
+            <select class="editSessionScrambleType">
+                <option value="2x2">2x2</option>
+                <option value="3x3">3x3</option>
+                <option value="4x4">4x4</option>
+                <option value="5x5">5x5</option>
+                <option value="6x6">6x6</option>
+                <option value="7x7">7x7</option>
+                <option value="skewb">Skewb</option>
+                <option value="sq1">Square 1</option>
+                <option value="pyra">Pyraminx</option>
+                <option value="mega">Megaminx</option>
+                <option value="clock">Clock</option>
+            </select>
+        </div>
+        <button class="saveTheSession">Save</button>
+    </div>
+
 	<script src="./src/js/umbrella.js"></script>
     <script src="./src/js/hashnav.js"></script>
 
     <script src="./src/js/scramble.js"></script>
     <script src="./src/js/timer.js"></script>
-    
+
     <script src="./src/js/index.js"></script>
     <!-- <script src="./src/bundle.js"></script> -->
   </body>

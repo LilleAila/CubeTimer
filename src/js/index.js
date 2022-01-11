@@ -29,10 +29,15 @@ let currentSession = 0;
 let sessions = [
     {
         name: "Session 1",
-        scrambleType: 3,
+        scrambleType: "3x3",
         solves: []
     }
 ]
+const sessionTemplate = {
+    name: "Session 1",
+    scrambleType: "3x3",
+    solves: []
+}
 const penalties = ["none", "+2", "DNF"];
 
 let timer = {
@@ -45,6 +50,97 @@ let timer = {
     startTime: 0
 };
 
+u(".addSession").on("click", () => {
+    document.querySelector(".addSessionName").value = "New Session";
+    document.querySelector(".addSessionScrambleType").value = "3x3";
+
+    u(".app-container").addClass("blur");
+    u(".addSessionUI").removeClass("hideAddSessionUI");
+});
+
+u(".addTheSession").on("click", () => {
+    let newSession = JSON.parse(JSON.stringify(sessionTemplate));
+    newSession["name"] = document.querySelector(".addSessionName").value;
+    newSession["scrambleType"] = document.querySelector(".addSessionScrambleType").value;
+    sessions.push(newSession);
+
+
+    showSessions();
+
+    u(".app-container").removeClass("blur");
+    u(".addSessionUI").addClass("hideAddSessionUI");
+});
+
+function showSessions() {
+    u(".sessions").empty();
+    for(let i = 0; i < sessions.length; i++) {
+        let index = i;
+        let span = u("<span>")
+            .text(sessions[i].name)
+            .on("click", () => setCurrentSession(index))
+            .addClass("sessionNameSpan");
+        let icon = u("<i>")
+            .addClass("far")
+            .addClass("fa-edit")
+            .addClass("editSession")
+            .on("click", () => editSession(index));
+        let li = u("<li>")
+            .append(span)
+            .append(icon)
+            .addClass("sessionName")
+            .addClass("s" + index);
+        u(".sessions").append(li);
+    }
+
+    setCurrentSession(currentSession);
+}
+
+function editSession(index) {
+    document.querySelector(".editSessionScrambleType").value = sessions[index].scrambleType;
+    document.querySelector(".editSessionName").value = sessions[index].name;
+
+    let index2 = index;
+    u(".saveTheSession").on("click", () => saveSession(index2));
+
+    u(".app-container").addClass("blur");
+    u(".editSessionUI").removeClass("hideEditSessionUI");
+}
+
+function saveSession(index) {
+    sessions[index].name = document.querySelector(".editSessionName").value;
+    sessions[index].scrambleType = document.querySelector(".editSessionScrambleType").value;
+
+    u(".app-container").removeClass("blur");
+    u(".editSessionUI").addClass("hideEditSessionUI");
+
+    showSessions();
+}
+
+function setCurrentSession(index) {
+    currentSession = index;
+    u(".sessionName").removeClass("currentSession");
+    u(".s" + index).addClass("currentSession");
+    writeAllSolves();
+    newScramble();
+    saveCurrentSession();
+}
+
+u("#searchSessions").on("keyup",  () => {
+    let filter = document.querySelector("#searchSessions").value.toUpperCase();
+    if(filter.length < 1) {
+        u("#sessions li").removeClass("hide");
+        return;
+    }
+    u("#sessions li").each((node, i) => {
+        let text = u(node).children("span").text().toUpperCase();
+        if(text.indexOf(filter) >= 0) {
+            u(node).removeClass("hide");
+        } else {
+            u(node).addClass("hide");
+        }
+    });
+});
+
 (() => {
     u("[setPage]").each((node, i) => {
         u(node).on("click", (e) => {
@@ -53,8 +149,6 @@ let timer = {
 		    e.preventDefault();
         });
     });
-
-    newScramble();
 
     if (window.localStorage.getItem("sessions") !== null && window.localStorage.getItem("sessions") !== undefined) {
         sessions = JSON.parse(window.localStorage.getItem("sessions"));
@@ -69,6 +163,9 @@ let timer = {
     }
 
     writeAllSolves();
+    showSessions();
+    // setCurrentSession(currentSession);
+    newScramble();
 })();
 
 function save() {
@@ -82,7 +179,8 @@ function saveCurrentSession() {
 const average = (array) => array.reduce((a, b) => a + b) / array.length;
 
 function newScramble() {
-    currentScramble = scramble(sessions[currentSession].scrambleType, 25);
+    // currentScramble = scramble(sessions[currentSession].scrambleType, 25);
+    currentScramble = scramble(3, 25);
     u(".scramble").text(currentScramble);
 }
 
@@ -156,6 +254,8 @@ function solveInfo(solve, id) {
             writeAllSolves();
         }
         save();
+        u(".solveInfo").removeClass("showInfo");
+        u(".app-container").removeClass("blur");
     });
 }
 
@@ -193,6 +293,8 @@ u(".actions .remove").off("click").on("click", () => {
         writeAllSolves();
     }
     save();
+    u(".solveInfo").removeClass("showInfo");
+    u(".app-container").removeClass("blur");
 });
 
 function writeAllSolves() {
