@@ -217,17 +217,17 @@ function saveSolve(time, timeStr) {
 
     // solves.push(solveToSave);
     sessions[currentSession].solves.push(solveToSave);
-    displaySolve(solveToSave);
+    displaySolve(solveToSave, sessions[currentSession].solves.length - 1);
 
     newScramble();
 
     save();
 }
 
-function displaySolve(solve) {
+function displaySolve(solve, id) {
     // console.log(solve);
     // console.log(sessions);
-    const id = sessions[currentSession].solves.length - 1;
+    // const id = sessions[currentSession].solves.length - 1;
     const timeTd = u("<td>")
         .text(solve.penalty == 0 ? solve.timeString : solve.penalty == 1 ? solve.timeString + "+2" : "DNF(" + solve.timeString + ")")
         .addClass("solveTime")
@@ -323,7 +323,7 @@ u(".actions .remove").off("click").on("click", () => {
 function writeAllSolves() {
     u(".solveTr").remove();
     for(let i = 0; i < sessions[currentSession].solves.length; i++) {
-        displaySolve(sessions[currentSession].solves[i]);
+        displaySolve(sessions[currentSession].solves[i], i);
     }
 }
 
@@ -332,7 +332,10 @@ u(".closeInfo").on("click", () => {
     u(".app-container").removeClass("blur");
 });
 
-u(".scramble").on("click", newScramble);
+u(".scramble").on("click", () => {
+    if(timer.started) return;
+    newScramble();
+});
 
 u(document).on("keydown", keyDown);
 u(document).on("keyup", keyUp);
@@ -359,7 +362,7 @@ function stopTimerCooldown() {
 function workFunc() {
     timer.time += timer.interval.interval;
     const p = parseTime(timer.time);
-    const tStr = `${p.hours > 0 ? `${p.hours.toString()}.` : ""}${p.minutes > 0 ? `${p.minutes.toString().padStart(2, "0")}.` : ""}${p.seconds.toString().padStart(2, "0")}.${p.tenths.toString()}`;
+    const tStr = `${p.hours > 0 ? `${p.hours.toString()}.` : ""}${p.minutes > 0 || p.hours > 0 ? `${p.minutes.toString().padStart(2, "0")}.` : ""}${p.seconds.toString().padStart(2, "0")}.${p.tenths.toString()}`;
     u(".time").text(tStr);
 }
 
@@ -379,7 +382,7 @@ function stopTimer() {
     timer.time = 0;
     const time = Date.now() - timer.startTime;
     const p = parseTime(time);
-    const tStr = `${p.hours > 0 ? `${p.hours.toString()}.` : ""}${p.minutes > 0 ? `${p.minutes.toString().padStart(2, "0")}.` : ""}${p.seconds.toString().padStart(2, "0")}.${p.tenths.toString()}${p.hundredths.toString()}`;
+    const tStr = `${p.hours > 0 ? `${p.hours.toString()}.` : ""}${p.minutes > 0 || p.hours > 0 ? `${p.minutes.toString().padStart(2, "0")}.` : ""}${p.seconds.toString().padStart(2, "0")}.${p.tenths.toString()}${p.hundredths.toString()}`;
     u(".time").text(tStr);
     saveSolve(time, tStr);
     save();
